@@ -7,6 +7,8 @@ Here’s an enhanced and more comprehensive version of your **FalconAI** descrip
 
 ![FalconAI](https://github.com/user-attachments/assets/f2388e96-8ad6-4d9d-96ec-d30b309318e4)  
 
+Change API KEY TO YOURS UP HERE |
+
 FalconAI is a cutting-edge chatbot powered by the OpenAI API, designed to deliver a dynamic, efficient, and user-friendly conversational experience. It combines advanced AI capabilities with modern UI/UX principles to create an adaptable and feature-rich chatbot interface.
 
 ---
