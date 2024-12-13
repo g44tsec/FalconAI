@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FalconGPT - AI Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="chat-container">
+        <div id="toolbar">
+            <button class="tab-button" onclick="createNewTab()">+ New Chat</button>
+        </div>
+        <div id="faq-container">
+            <h3>FAQ - Falcon AI </h3>
+            <ul id="faq-list">
+                
+            </ul>
+        </div>
+        <div id="chat-box">
+            <div id="messages"></div>
+        </div>
+        <div id="input-container">
+            <input type="file" id="file-input" style="display: none;" accept="image/*">
+            <button id="file-upload-button" onclick="document.getElementById('file-input').click()">📁</button>
+            <input type="hidden" id="uploaded-file-base64" value="">
+
+            <button id="mic-button">🎤</button>
+
+            <input type="text" id="user-input" placeholder="Did you know? You're doing better than you think. Keep going!">
+            <button id="send-button">Send</button>
+        </div>
+        <input type="hidden" id="uploaded-file-base64">  <!-- this line is assisted by ai -->
+
+    <div id="color-preset-container">
+        <button id="preset-dark" class="color-preset-button" style="background-color: #3a3a3a;"></button>
+        <button id="preset-purple-yellow" class="color-preset-button" style="background-color: #9B1B30;"></button>
+        <button id="preset-white-pink" class="color-preset-button" style="background-color: #f8c6d2;"></button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.12/marked.min.js"></script> <!-- this line is assisted by ai -->
+    <script src="script.js"></script>
+    <script>
+
+        async function loadFAQQuestions() {
+            try {
+                const response = await fetch('faqQuestions.json');
+                const data = await response.json();
+                const faqList = document.getElementById('faq-list');
+                data.questions.forEach((question) => {
+                    const li = document.createElement('li');
+                    const button = document.createElement('button');
+                    button.className = 'faq-question';
+                    button.textContent = question;
+                    button.onclick = function() {
+                        askQuestion(question);
+                    };
+                    li.appendChild(button);
+                    faqList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error loading FAQ questions:', error);
+            }
+        }
+
+        function askQuestion(question) {
+            const inputField = document.getElementById('user-input');
+            inputField.value = question; 
+
+            sendMessage();
+        }
+
+        window.onload = () => {
+            loadFAQQuestions();
+            createNewTab(); 
+        };
+    </script>
+</body>
+</html>
